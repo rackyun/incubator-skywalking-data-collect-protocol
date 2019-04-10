@@ -49,4 +49,5 @@ enum SpanLayer {
     Http = 3;
     MQ = 4;
     Cache = 5;
+    Scheduled = 6;
 }
