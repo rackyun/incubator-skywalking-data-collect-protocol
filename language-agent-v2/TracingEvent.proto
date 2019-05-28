@@ -31,17 +31,9 @@ service TracingEventReportService {
 }
 
 message UpstreamEvent {
-    repeated UniqueId globalTraceIds = 1;
-    bytes event = 2;
-}
-
-message TracingEventObject {
-    UniqueId traceSegmentId = 1;
+    UniqueId globalTraceId = 1;
     int64 timestamp = 2;
-    repeated TracingTagObject tracingTags = 3;
-}
-
-message TracingTagObject {
-    string tag = 1;
-    string value = 2;
+    string event = 3;
+    string message = 4;
+    repeated KeyStringValuePair tracingTags = 5;
 }
