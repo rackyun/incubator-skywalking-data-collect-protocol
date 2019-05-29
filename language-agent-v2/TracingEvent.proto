@@ -35,5 +35,6 @@ message UpstreamEvent {
     int64 timestamp = 2;
     string event = 3;
     string message = 4;
-    repeated KeyStringValuePair tracingTags = 5;
+    string bizTagName = 5;
+    string bizTagValue = 6;
 }
