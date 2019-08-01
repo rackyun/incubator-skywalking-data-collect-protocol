@@ -22,32 +22,19 @@ option java_multiple_files = true;
 option java_package = "org.apache.skywalking.apm.network.language.agent";
 option csharp_namespace = "SkyWalking.NetworkProtocol";
 
-message UpstreamSegment {
-    repeated UniqueId globalTraceIds = 1;
-    bytes segment = 2; // the byte array of TraceSegmentObject
+import "common/common.proto";
+import "common/trace-common.proto";
+
+service TracingEventReportService {
+    rpc report (stream UpstreamEvent) returns (Commands) {
+    }
 }
 
-enum SpanType {
-    Entry = 0;
-    Exit = 1;
-    Local = 2;
-}
-
-message UniqueId {
-    repeated int64 idParts = 1;
-}
-
-enum RefType {
-    CrossProcess = 0;
-    CrossThread = 1;
-}
-
-enum SpanLayer {
-    Unknown = 0;
-    Database = 1;
-    RPCFramework = 2;
-    Http = 3;
-    MQ = 4;
-    Cache = 5;
-    Scheduled = 6;
+message UpstreamEvent {
+    UniqueId globalTraceId = 1;
+    int64 timestamp = 2;
+    string event = 3;
+    string message = 4;
+    string bizTagName = 5;
+    string bizTagValue = 6;
 }
